@@ -5,7 +5,22 @@
   * Must-Haves: display game board, tiles clickable only once, display winner or tie, restart button
   * Should-Haves: Display player turns, Input bar for player names
   * Could-Haves: Utilize classes for dryer code, way to track number of games played, start/resume games
-  * Would-Have (Wish) - Computer to play game against you, Login Options
+  * Won't-Have (Wish) - Computer to play game against you, Login Options
+
+## Atomic Design Principles
+ - Atoms
+    * Reset button
+    * Play Game button
+    * Heading at Top
+ - Molecules
+    * tiles of game board
+    * working functions of both buttons
+    * display of player turn underneath major heading
+ - Organisms
+   *  functions
+   *  objects
+   *  display
+
 
 ## Questions
   - How do I ensure the tiles are only clickable once? (more research/sandboxing required)
@@ -16,8 +31,9 @@
 ## Solutions
 - Ensure tiles are only clicked once by creating a variable and setting it to clicked tiles (prevent multiple clicks on same tile)
 - Have players insert their name after the press of Start Game button
- *After your press Play Game, an input bar will pop up asking for name for player A and then Player B
- - 
+  * After your press Play Game, an input bar will pop up asking for name for player A and then Player B
+ - click of tile produces correct symbol based on array of turns **?**
+ - set variable for number of tursn (see next section)
 
 
 ### Variables Needed
@@ -87,18 +103,18 @@
 
 ## Object-Oriented
 
-
-
-createGameBoard() {
-
-const Turns = {
+const Game = {
+turns: ["","","","","","","","","",]
+wins: (keep track of # of wins)
 playerA : "x",
 playerB : "o",
 tiles: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+winConditions: get 1 of 8 possible solutions
 }
 
+createGameBoard() {
+ 
 }
-
 
 function displayWinner() {
  if(playerA === win || playerB === win) {
