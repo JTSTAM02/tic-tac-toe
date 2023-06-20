@@ -13,6 +13,13 @@
   - How does click of tile produce correct symbol? (more research/sandboxing required)
   - How do I ensure system keeps track of number of turns left? (set variable)
 
+## Solutions
+- Ensure tiles are only clicked once by creating a variable and setting it to clicked tiles (prevent multiple clicks on same tile)
+- Have players insert their name after the press of Start Game button
+ *After your press Play Game, an input bar will pop up asking for name for player A and then Player B
+ - 
+
+
 ### Variables Needed
   - let numOfTurns = 0
 
@@ -102,7 +109,7 @@ function displayWinner() {
  }
 }
 
-restart.addEventListener('onclick') {
+function restart() {
 createGameBoard();
 }
 
