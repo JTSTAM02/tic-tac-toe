@@ -8,9 +8,9 @@
   * Would-Have (Wish) - Computer to play game against you, Login Options
 
 ## Questions
-  - How do I ensure the tiles are only clickable once? (more research required)
+  - How do I ensure the tiles are only clickable once? (more research/sandboxing required)
   - When should players insert their names? (STRETCH GOAL)
-  - How does click of tile produce correct symbol? (more research required)
+  - How does click of tile produce correct symbol? (more research/sandboxing required)
   - How do I ensure system keeps track of number of turns left? (set variable)
 
 ### Variables Needed
@@ -24,12 +24,13 @@
 
   - Create an object named **Turns** that holds within it arrays for player, tiles, and symbols
     * player1: "x";
-    * player2: "y";
+    * player2: "o";
     * tiles: {1-9};
 
   - Create the Game Board
     * displays User Interface upon window loading
     * includes player turns (Whose turn it is)
+    * include Begin Game button
     * includes restart button
   
 
@@ -40,6 +41,7 @@
   
   - Begin Turns
     * Player takes a turn and selects a Tile
+       - upon click of tile, players symbol should display on that tile and stay there for remainder of game
     * System records turn completed-STATE 
 
 
@@ -55,7 +57,7 @@
   
   -Check for Win
     * check all 8 ways to win (vertically three times, horizontal three times, diagonal two times)
-    if true current player wins
+    if any of the 8 are true,  current player wins
     else its a tie
     
 
@@ -77,4 +79,30 @@
 
 
 ## Object-Oriented
+
+const Turns = {
+playerA : "x",
+playerB : "o",
+tiles: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+createGameBoard() {
+
+
+}
+
+
+function displayWinner() {
+ if(playerA === win || playerB === win) {
+ return {player.name} is the winner!
+ }
+ else {
+ return "It's a tie!";
+ }
+}
+
+restart.addEventListener('onclick') {
+createGameBoard();
+}
+
 
