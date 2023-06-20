@@ -71,7 +71,7 @@
 ## Functional
 -Major object is Turns and holds within it players and their respective symbols, 
 
-- createGameBoard
+- createGameBoard (have Turns object within)
 - displayPlayerTurn
 - restart
 - displayWinner
@@ -80,14 +80,15 @@
 
 ## Object-Oriented
 
+
+
+createGameBoard() {
+
 const Turns = {
 playerA : "x",
 playerB : "o",
 tiles: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
-
-createGameBoard() {
-
 
 }
 
