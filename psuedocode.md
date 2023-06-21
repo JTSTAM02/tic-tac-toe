@@ -27,6 +27,7 @@
   - When should players insert their names? (STRETCH GOAL)
   - How does click of tile produce correct symbol? (more research/sandboxing required)
   - How do I ensure system keeps track of number of turns left? (set variable)
+  - How do I appropriately nest each function to each object?
 
 ## Solutions
 - Ensure tiles are only clicked once by creating a variable and setting it to clicked tiles (prevent multiple clicks on same tile)
@@ -108,11 +109,10 @@
 ## Object-Oriented
 
 const Game = {
-turns: ["","","","","","","","","",]
-winConditions: 1 of 8 ways **?**
+tiles: Array(9).fill("");
+winConditions: [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 playerA : "x",
 playerB : "o",
-tiles: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
 createGameBoard() {
@@ -137,4 +137,10 @@ function restart() {
 createGameBoard();
 }
 
+function checkForWIN() {
+   
+}
 
+Function checkForTie() {
+     
+}
