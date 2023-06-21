@@ -17,9 +17,9 @@
     * working functions of both buttons
     * display of player turn underneath major heading
  - Organisms
-   *  functions
-   *  objects
-   *  display
+   *  Functions
+   *  Objects
+   *  Display
 
 
 ## Questions
@@ -57,9 +57,15 @@
     * includes player turns (Whose turn it is)
     * include Begin Game button
     * includes restart button
-  
 
-  - Login (Would-Have/Wish)
+
+  ## State
+   - setState to count tileClicks
+   - onclick
+   - tileClicks <= 1
+   - 
+
+  - Login (Won't-Have/Wish)
   - Start Game/Resume Session (Could Have)
 
     ### When Game Begins
@@ -85,7 +91,7 @@
     if any of the 8 are true,  current player wins
     else its a tie
     
-
+ 
    
   
 ### End
@@ -103,6 +109,7 @@
 - checkForWin
 - checkForTie
 - displayWinner
+- checkArrayItems (.every)
 
 
 
@@ -110,17 +117,21 @@
 
 const Game = {
 tiles: Array(9).fill("");
-winConditions: [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+winConditions: [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]] playera || playerb
 playerA : "x",
 playerB : "o",
+moves: loop for win conditions (all 3 same type)
+reduce (sum of array in js)
 }
 
 createGameBoard() {
  const app = document.getElementById ("app");
  const heading = document.createElement ("h1");
- heading.textContent = ("Ti-Tac-Toe");
+ heading.textContent = ("Tic-Tac-Toe");
  const gameBoard = document.createElement("div");
- app.appendChild(gameBoard)
+ app.appendChild(gameBoard);
+ .map to create tiles **?**
+ const restartButton = document.createElement("button")
  
 }
 
@@ -137,7 +148,7 @@ function restart() {
 createGameBoard();
 }
 
-function checkForWIN() {
+function checkForWin() {
    
 }
 
