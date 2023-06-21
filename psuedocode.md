@@ -33,7 +33,7 @@
 - Have players insert their name after the press of Start Game button
   * After your press Play Game, an input bar will pop up asking for name for player A and then Player B
  - click of tile produces correct symbol based on array of turns **?**
- - set variable for number of tursn (see next section)
+ - set variable for number of turns (see next section)
 
 
 ### Variables Needed
@@ -45,10 +45,11 @@
 ### Begin
 ### Init
 
-  - Create an object named **Turns** that holds within it arrays for player, tiles, and symbols
+  - Create an object named **Game** that holds within it arrays for player, tiles, and how to win
     * player1: "x";
     * player2: "o";
-    * tiles: {1-9};
+    * tiles: Array(9).fill("");
+    * winConditions: [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
   - Create the Game Board
     * displays User Interface upon window loading
@@ -92,11 +93,14 @@
 
 
 ## Functional
--Major object is Turns and holds within it players and their respective symbols, 
+-Major object is Game and holds within it players and their respective symbols, 
 
-- createGameBoard (have Turns object within)
+- Game object
+- createGameBoard
 - displayPlayerTurn
 - restart
+- checkForWin
+- checkForTie
 - displayWinner
 
 
@@ -105,14 +109,18 @@
 
 const Game = {
 turns: ["","","","","","","","","",]
-wins: (keep track of # of wins)
+winConditions: 1 of 8 ways **?**
 playerA : "x",
 playerB : "o",
 tiles: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-winConditions: get 1 of 8 possible solutions
 }
 
 createGameBoard() {
+ const app = document.getElementById ("app");
+ const heading = document.createElement ("h1");
+ heading.textContent = ("Ti-Tac-Toe");
+ const gameBoard = document.createElement("div");
+ app.appendChild(gameBoard)
  
 }
 
