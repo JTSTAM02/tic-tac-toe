@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function () {
   createHeading();
 
   function getPlayerNames() {
-    playerXName = prompt('Enter name for Player X') || 'Player X';
-    playerOName = prompt('Enter name for Player O') || 'Player O';
+    playerXName = prompt('Enter name for Player X');
+    playerOName = prompt('Enter name for Player O');
   }
 
   function displayBoard() {
@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function displaySymbols() {
     const tiles = document.getElementsByClassName('tile');
+    const currentPlayerName = document.querySelector('.player-names p');
     for (let i = 0; i < tiles.length; i++) {
       tiles[i].addEventListener('click', function () {
         if (!gameEnded && this.textContent === '') {
@@ -99,9 +100,6 @@ document.addEventListener('DOMContentLoaded', function () {
           checkForWin();
           checkForTie();
           currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-
-          const currentPlayerName = document.querySelector('.player-names p');
-          currentPlayerName.textContent = getPlayerName(currentPlayer) + "'s turn (" + currentPlayer + ")";
         }
       });
     }
@@ -114,9 +112,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     currentPlayer = 'X';
     gameEnded = false;
-
-    const currentPlayerName = document.querySelector('.player-names p');
-    currentPlayerName.textContent = getPlayerName(currentPlayer) + "'s turn (" + currentPlayer + ")";
   }
 
   function checkForWin() {
