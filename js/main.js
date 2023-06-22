@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   createHeading();
 
-  function getPlayerNames() {
-    playerXName = prompt('Enter name for Player X');
-    playerOName = prompt('Enter name for Player O');
-  }
+   function getPlayerNames() {
+     playerXName = prompt('Enter name for Player X');
+     playerOName = prompt('Enter name for Player O');
+   }
 
   function displayBoard() {
     const board = document.createElement('div');
@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     playerTurn.classList.add('player-turn');
     const currentPlayerTurn = document.createElement('p');
     currentPlayerTurn.textContent = `${getPlayerName(currentPlayer)}'s turn (${currentPlayer})`;
+    currentPlayerTurn.id = "current-player-turn";
     playerTurn.appendChild(currentPlayerTurn);
     return playerTurn;
   }
@@ -92,17 +93,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function displaySymbols() {
     const tiles = document.getElementsByClassName('tile');
-    const currentPlayerName = document.querySelector('.player-names p');
+    const currentPlayerTurn = document.getElementById("current-player-turn");
+
     for (let i = 0; i < tiles.length; i++) {
       tiles[i].addEventListener('click', function () {
         if (!gameEnded && this.textContent === '') {
           this.textContent = currentPlayer;
           checkForWin();
           checkForTie();
-          currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+          currentPlayer = currentPlayer === 'X' ? 'O' : 'X';    
+          currentPlayerTurn.textContent = `${getPlayerName(currentPlayer)}'s turn (${currentPlayer})`;
         }
       });
     }
+
   }
 
   function restartGame() {
