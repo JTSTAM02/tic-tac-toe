@@ -39,19 +39,6 @@ const board = document.createElement("div");
   displaySymbols();
 }
 
-  function checkForWin() {
-    const winningCombos = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6]
-    ];
-  }
-
   // displays x's and o's
 function displaySymbols() {
   const tiles = document.getElementsByClassName("tile");
@@ -75,6 +62,24 @@ function restartGame() {
 }
 
 
+function checkForWin() {
+  const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+}
+
+function checkForTie(){
+  if (displayBoard != winningCombos) {
+    alert(`It's a tie! Click "Restart Game" to try again`);
+  }
+}
 
 });
 
