@@ -1,10 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
       const app = document.getElementById('app');
-      let currentPlayer = 'X';
-      let gameActive = true;
-      let moves = 0;
-      const tiles = ['', '', '', '', '', '', '', '', ''];
 
+      let moves = 0;
+      
       function createHeading() {
         const app = document.getElementById("app");
         const heading = document.createElement("h1");
@@ -14,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     createHeading();
 
-      function checkWin(player) {
+      function checkForWin() {
         const winningCombos = [
           [0, 1, 2],
           [3, 4, 5],
@@ -26,26 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
           [2, 4, 6]
         ];
 
-        return winningCombos.some(combo => {
-          return combo.every(index => tiles[index] === player);
-        });
-      }
-
-
-      function restartGame() {
-        currentPlayer = 'X';
-        gameActive = true;
-        moves = 0;
-        tiles.fill('');
-        Array.from(app.children).forEach(tile => {
-          tile.textContent = '';
-        });
       }
 
       function createTile(row, col) {
         const tile = document.createElement('div');
         tile.classList.add('tile');
-        tile.addEventListener('click', () => handleClick(row * 3 + col));
         return tile;
       }
 
