@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   createHeading();
 
-   function getPlayerNames() {
-     playerXName = prompt('Enter name for Player X');
-     playerOName = prompt('Enter name for Player O');
-   }
+  function getPlayerNames() {
+    playerXName = prompt('Enter name for Player X');
+    playerOName = prompt('Enter name for Player O');
+  }
 
   function displayBoard() {
     const board = document.createElement('div');
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const restartButton = document.createElement('button');
     restartButton.textContent = 'Restart Game';
     restartButton.addEventListener('click', restartGame);
-    
+
     app.appendChild(createPlayerNames());
     app.appendChild(createPlayerTurn());
     app.appendChild(board);
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
           this.textContent = currentPlayer;
           checkForWin();
           checkForTie();
-          currentPlayer = currentPlayer === 'X' ? 'O' : 'X';    
+          currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
           currentPlayerTurn.textContent = `${getPlayerName(currentPlayer)}'s turn (${currentPlayer})`;
         }
       });
@@ -116,6 +116,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     currentPlayer = 'X';
     gameEnded = false;
+
+    const currentPlayerTurn = document.getElementById('current-player-turn');
+    currentPlayerTurn.textContent = `${getPlayerName(currentPlayer)}'s turn (${currentPlayer})`;
   }
 
   function checkForWin() {
