@@ -38,7 +38,8 @@
 
 
 ### Variables Needed
-  - let numOfTurns = 0
+  - let currentPlayer = "X";
+  - let gameEnded = false;
 
 
 ## Procedural
@@ -52,18 +53,13 @@
     * tiles: Array(9).fill("");
     * winConditions: [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
-  - Create the Game Board
+  - Create the Game Board (broken down into heading and tile on js file)
     * displays User Interface upon window loading
     * includes player turns (Whose turn it is)
     * include Begin Game button
     * includes restart button
 
 
-  ## State
-   - setState to count tileClicks
-   - onclick
-   - tileClicks <= 1
-   - 
 
   - Login (Won't-Have/Wish)
   - Start Game/Resume Session (Could Have)
@@ -103,13 +99,13 @@
 -Major object is Game and holds within it players and their respective symbols, 
 
 - Game object
-- createGameBoard
+- createHeading
+- createTiles
+- displaySymbols
 - displayPlayerTurn
-- restart
+- restartGame
 - checkForWin
 - checkForTie
-- displayWinner
-- checkArrayItems (.every)
 
 
 
