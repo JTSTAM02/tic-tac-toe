@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const app = document.getElementById('app');
   let currentPlayer = 'X';
-  let gameEnded = false;
+  let gameEnded = false; // used to check for end of game in checkForWin and checkForTie functions later
 
   function createHeading() {
     const heading = document.createElement('h1');
