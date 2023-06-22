@@ -3,20 +3,37 @@ document.addEventListener('DOMContentLoaded', function () {
   let currentPlayer = 'X';
   let gameEnded = false; // used to check for end of game in checkForWin and checkForTie functions later
 
+  // Player names
+  const playerXName = 'Player X';
+  const playerOName = 'Player O';
+
   function createHeading() {
     const heading = document.createElement('h1');
     heading.textContent = 'Tic-Tac-Toe';
     app.appendChild(heading);
     const beginGame = document.createElement('button');
     beginGame.textContent = 'Click Here to Begin';
-    beginGame.addEventListener('click', function () {displayBoard();
-    beginGame.style.display = "none";
+    beginGame.addEventListener('click', function () {
+      displayBoard();
+      beginGame.style.display = 'none';
     });
     app.appendChild(beginGame);
   }
   createHeading();
 
+  // Function to display player names
+  function displayPlayerNames() {
+    const playerNames = document.createElement('div');
+    playerNames.classList.add('player-names');
+    const currentPlayerName = document.createElement('p');
+    currentPlayerName.textContent = getPlayerName(currentPlayer) + "'s turn (" + currentPlayer + ")";
+    playerNames.appendChild(currentPlayerName);
+    app.insertBefore(playerNames, app.firstChild);
+  }
+
   function displayBoard() {
+    displayPlayerNames(); // Display player names
+
     const board = document.createElement('div');
     board.classList.add('board');
     for (let row = 0; row < 3; row++) {
@@ -49,6 +66,10 @@ document.addEventListener('DOMContentLoaded', function () {
           checkForWin();
           checkForTie();
           currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+
+          // Update player names display
+          const currentPlayerName = document.querySelector('.player-names p');
+          currentPlayerName.textContent = getPlayerName(currentPlayer) + "'s turn (" + currentPlayer + ")";
         }
       });
     }
@@ -108,6 +129,18 @@ document.addEventListener('DOMContentLoaded', function () {
     if (isTie && !gameEnded) {
       gameEnded = true;
       alert("It's a tie! Click 'Restart Game' to try again");
+    }
+  }
+
+  // Function to get player name based on the current player
+  function getPlayerName(player) {
+    switch (player) {
+      case 'X':
+        return playerXName;
+      case 'O':
+        return playerOName;
+      default:
+        return '';
     }
   }
 });
