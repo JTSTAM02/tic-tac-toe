@@ -3,9 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
   let currentPlayer = 'X';
   let gameEnded = false; // used to check for end of game in checkForWin and checkForTie functions later
 
-  // Player names
-  const playerXName = 'Player X';
-  const playerOName = 'Player O';
+  let playerXName = 'Player X';
+  let playerOName = 'Player O';
 
   function createHeading() {
     const heading = document.createElement('h1');
@@ -14,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const beginGame = document.createElement('button');
     beginGame.textContent = 'Click Here to Begin';
     beginGame.addEventListener('click', function () {
+      getPlayerNames();
       displayBoard();
       beginGame.style.display = 'none';
     });
@@ -21,19 +21,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   createHeading();
 
-  // Function to display player names
-  function displayPlayerNames() {
-    const playerNames = document.createElement('div');
-    playerNames.classList.add('player-names');
-    const currentPlayerName = document.createElement('p');
-    currentPlayerName.textContent = getPlayerName(currentPlayer) + "'s turn (" + currentPlayer + ")";
-    playerNames.appendChild(currentPlayerName);
-    app.insertBefore(playerNames, app.firstChild);
+  function getPlayerNames() {
+    playerXName = prompt('Enter name for Player X') || 'Player X';
+    playerOName = prompt('Enter name for Player O') || 'Player O';
   }
 
   function displayBoard() {
-    displayPlayerNames(); // Display player names
-
     const board = document.createElement('div');
     board.classList.add('board');
     for (let row = 0; row < 3; row++) {
@@ -41,14 +34,54 @@ document.addEventListener('DOMContentLoaded', function () {
         board.appendChild(createTile(row, col));
       }
     }
-    app.appendChild(board);
 
     const restartButton = document.createElement('button');
     restartButton.textContent = 'Restart Game';
     restartButton.addEventListener('click', restartGame);
+    
+    app.appendChild(createPlayerNames());
+    app.appendChild(createPlayerTurn());
+    app.appendChild(board);
     app.appendChild(restartButton);
 
     displaySymbols();
+  }
+
+  function createPlayerTurn() {
+    const playerTurn = document.createElement('div');
+    playerTurn.classList.add('player-turn');
+    const currentPlayerTurn = document.createElement('p');
+    currentPlayerTurn.textContent = `${getPlayerName(currentPlayer)}'s turn (${currentPlayer})`;
+    playerTurn.appendChild(currentPlayerTurn);
+    return playerTurn;
+  }
+
+  function createPlayerNames() {
+    const playerNames = document.createElement('div');
+    playerNames.classList.add('player-names');
+
+    const playerXLabel = document.createElement('label');
+    playerXLabel.textContent = 'Player X: ';
+    const playerXInput = document.createElement('input');
+    playerXInput.value = playerXName;
+    playerXInput.addEventListener('change', function () {
+      playerXName = playerXInput.value || 'Player X';
+    });
+    playerXLabel.appendChild(playerXInput);
+
+    const playerOLabel = document.createElement('label');
+    playerOLabel.textContent = 'Player O: ';
+    const playerOInput = document.createElement('input');
+    playerOInput.value = playerOName;
+    playerOInput.addEventListener('change', function () {
+      playerOName = playerOInput.value || 'Player O';
+    });
+    playerOLabel.appendChild(playerOInput);
+
+    playerNames.appendChild(playerXLabel);
+    playerNames.appendChild(playerOLabel);
+
+    return playerNames;
   }
 
   function createTile(row, col) {
@@ -67,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function () {
           checkForTie();
           currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
 
-          // Update player names display
           const currentPlayerName = document.querySelector('.player-names p');
           currentPlayerName.textContent = getPlayerName(currentPlayer) + "'s turn (" + currentPlayer + ")";
         }
@@ -82,6 +114,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     currentPlayer = 'X';
     gameEnded = false;
+
+    const currentPlayerName = document.querySelector('.player-names p');
+    currentPlayerName.textContent = getPlayerName(currentPlayer) + "'s turn (" + currentPlayer + ")";
   }
 
   function checkForWin() {
@@ -107,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
         tiles[a].textContent === tiles[c].textContent
       ) {
         gameEnded = true; // once game is over, displays winner
-        alert(`Congrats, player ${tiles[a].textContent} wins!`);
+        alert(`Congrats, ${getPlayerName(tiles[a].textContent)} wins!`);
         break;
       }
     }
@@ -128,11 +163,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // if all tiles are filled and there is no winner, displays a tie
     if (isTie && !gameEnded) {
       gameEnded = true;
-      alert("It's a tie! Click 'Restart Game' to try again");
+      alert(`It's a tie! Click "Restart Game" to try again`);
     }
   }
 
-  // Function to get player name based on the current player
   function getPlayerName(player) {
     switch (player) {
       case 'X':
