@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
     app.appendChild(heading);
     const beginGame = document.createElement('button');
     beginGame.textContent = 'Click Here to Begin';
-    beginGame.addEventListener('click', displayBoard);
+    beginGame.addEventListener('click', function () {displayBoard();
+    beginGame.style.display = "none";
+    });
     app.appendChild(beginGame);
   }
   createHeading();
