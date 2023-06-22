@@ -73,15 +73,17 @@ document.addEventListener('DOMContentLoaded', function () {
       [2, 4, 6]
     ];
 
+    // loop through each winning combo
     for (let combo of winningCombos) {
-      const [a, b, c] = combo;
+      const [a, b, c] = combo; // checks each individual position
       const tiles = document.getElementsByClassName('tile');
+      // checks if tile have the same value (X or O)
       if (
         tiles[a].textContent !== '' &&
         tiles[a].textContent === tiles[b].textContent &&
         tiles[a].textContent === tiles[c].textContent
       ) {
-        gameEnded = true;
+        gameEnded = true; // once game is over, displays winner
         alert(`Congrats, player ${tiles[a].textContent} wins!`);
         break;
       }
@@ -91,12 +93,16 @@ document.addEventListener('DOMContentLoaded', function () {
   function checkForTie() {
     const tiles = document.getElementsByClassName('tile');
     let isTie = true;
+
+    // loops through each tile checking for empty tiles
     for (let i = 0; i < tiles.length; i++) {
       if (tiles[i].textContent === '') {
         isTie = false;
         break;
       }
     }
+
+    // if all tiles are filled and there is no winner, displays a tie
     if (isTie && !gameEnded) {
       gameEnded = true;
       alert("It's a tie! Click 'Restart Game' to try again");
