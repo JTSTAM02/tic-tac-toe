@@ -33,7 +33,7 @@ const board = document.createElement("div");
   // displays restart button after display of game
   const restartButton = document.createElement('button');
   restartButton.textContent = 'Restart Game';
-  restartButton.addEventListener('click', restartButton);
+  restartButton.addEventListener('click', restartGame);
   app.appendChild(restartButton);
 
   displaySymbols();
@@ -52,6 +52,7 @@ const board = document.createElement("div");
     ];
   }
 
+  // displays x's and o's
 function displaySymbols() {
   const tiles = document.getElementsByClassName("tile");
   for( let i = 0; i< tiles.length; i ++) {
@@ -64,7 +65,7 @@ function displaySymbols() {
   }
 }
 
-
+// logic for restart button above
 function restartGame() {
   const tiles = document.getElementsByClassName('tile');
   for (let i = 0; i < tiles.length; i++) {
