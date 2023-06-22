@@ -1,85 +1,105 @@
 document.addEventListener('DOMContentLoaded', function () {
   const app = document.getElementById('app');
-  let currentPlayer = "X";
+  let currentPlayer = 'X';
+  let gameEnded = false;
 
   function createHeading() {
-    const app = document.getElementById("app");
-    const heading = document.createElement("h1");
-    heading.textContent = "Tic-Tac-Toe";
+    const heading = document.createElement('h1');
+    heading.textContent = 'Tic-Tac-Toe';
     app.appendChild(heading);
-    const beginGame = document.createElement("button");
-    beginGame.textContent = "Click Here to Begin";
-    beginGame.addEventListener("click", displayBoard);
+    const beginGame = document.createElement('button');
+    beginGame.textContent = 'Click Here to Begin';
+    beginGame.addEventListener('click', displayBoard);
     app.appendChild(beginGame);
   }
   createHeading();
 
-// creates board with rows and columns then creates tiles and displays them
-function displayBoard() {  
-const board = document.createElement("div");
-  board.classList.add("board");
-  for (let row = 0; row < 3; row++) {
-    for (let col = 0; col < 3; col++) {
-      board.appendChild(createTile(row, col));
+  function displayBoard() {
+    const board = document.createElement('div');
+    board.classList.add('board');
+    for (let row = 0; row < 3; row++) {
+      for (let col = 0; col < 3; col++) {
+        board.appendChild(createTile(row, col));
+      }
     }
+    app.appendChild(board);
+
+    const restartButton = document.createElement('button');
+    restartButton.textContent = 'Restart Game';
+    restartButton.addEventListener('click', restartGame);
+    app.appendChild(restartButton);
+
+    displaySymbols();
   }
+
   function createTile(row, col) {
     const tile = document.createElement('div');
     tile.classList.add('tile');
     return tile;
   }
-  app.appendChild(board);
 
-  // displays restart button after display of game
-  const restartButton = document.createElement('button');
-  restartButton.textContent = 'Restart Game';
-  restartButton.addEventListener('click', restartGame);
-  app.appendChild(restartButton);
+  function displaySymbols() {
+    const tiles = document.getElementsByClassName('tile');
+    for (let i = 0; i < tiles.length; i++) {
+      tiles[i].addEventListener('click', function () {
+        if (!gameEnded && this.textContent === '') {
+          this.textContent = currentPlayer;
+          checkForWin();
+          checkForTie();
+          currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        }
+      });
+    }
+  }
 
-  displaySymbols();
-}
+  function restartGame() {
+    const tiles = document.getElementsByClassName('tile');
+    for (let i = 0; i < tiles.length; i++) {
+      tiles[i].textContent = '';
+    }
+    currentPlayer = 'X';
+    gameEnded = false;
+  }
 
-  // displays x's and o's
-function displaySymbols() {
-  const tiles = document.getElementsByClassName("tile");
-  for( let i = 0; i< tiles.length; i ++) {
-    tiles[i].addEventListener("click", function () {
-      if(this.textContent === "") {
-        this.textContent = currentPlayer;
-        currentPlayer = currentPlayer === "X" ? "O" : "X";
+  function checkForWin() {
+    const winningCombos = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ];
+
+    for (let combo of winningCombos) {
+      const [a, b, c] = combo;
+      const tiles = document.getElementsByClassName('tile');
+      if (
+        tiles[a].textContent !== '' &&
+        tiles[a].textContent === tiles[b].textContent &&
+        tiles[a].textContent === tiles[c].textContent
+      ) {
+        gameEnded = true;
+        alert(`Congrats, player ${tiles[a].textContent} wins!`);
+        break;
       }
-    })
+    }
   }
-}
 
-// logic for restart button above
-function restartGame() {
-  const tiles = document.getElementsByClassName('tile');
-  for (let i = 0; i < tiles.length; i++) {
-    tiles[i].textContent = '';
+  function checkForTie() {
+    const tiles = document.getElementsByClassName('tile');
+    let isTie = true;
+    for (let i = 0; i < tiles.length; i++) {
+      if (tiles[i].textContent === '') {
+        isTie = false;
+        break;
+      }
+    }
+    if (isTie && !gameEnded) {
+      gameEnded = true;
+      alert("It's a tie! Click 'Restart Game' to try again");
+    }
   }
-  currentPlayer = 'X';
-}
-
-
-function checkForWin() {
-  const winningCombos = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ];
-}
-
-function checkForTie(){
-  if (displayBoard != winningCombos) {
-    alert(`It's a tie! Click "Restart Game" to try again`);
-  }
-}
-
 });
-
