@@ -9,9 +9,11 @@ document.addEventListener('DOMContentLoaded', function () {
   function createHeading() {
     const heading = document.createElement('h1');
     heading.textContent = 'Tic-Tac-Toe';
+    heading.classList.add('text-center');
     app.appendChild(heading);
     const beginGame = document.createElement('button');
     beginGame.textContent = 'Click Here to Begin';
+    beginGame.classList.add("btn", "btn-primary");
     beginGame.addEventListener('click', function () {
       getPlayerNames();
       displayBoard();
@@ -27,6 +29,16 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function displayBoard() {
+
+    const boardContainer = document.createElement("div");
+    boardContainer.classList.add("container");
+
+    const boardRow = document.createElement("div");
+    boardRow.classList.add("row");
+
+    const boardColumn = document.createElement("div");
+    boardColumn.classList.add("col-sm-6", 'offset-sm-3');
+
     const board = document.createElement('div');
     board.classList.add('board');
     for (let row = 0; row < 3; row++) {
@@ -37,11 +49,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const restartButton = document.createElement('button');
     restartButton.textContent = 'Restart Game';
+    restartButton.classList.add('btn', 'btn-info', 'mt-3');
     restartButton.addEventListener('click', restartGame);
 
     app.appendChild(createPlayerNames());
     app.appendChild(createPlayerTurn());
-    app.appendChild(board);
+
+    boardColumn.appendChild(board);
+    boardContainer.appendChild(boardRow);
+    boardRow.appendChild(boardColumn);
+    app.appendChild(boardContainer);
     app.appendChild(restartButton);
 
     displaySymbols();
@@ -65,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
     playerXLabel.textContent = 'Player X: ';
     const playerXInput = document.createElement('input');
     playerXInput.value = playerXName;
+    playerXLabel.style.padding = "10px";
     playerXInput.addEventListener('change', function () {
       playerXName = playerXInput.value || 'Player X';
     });
