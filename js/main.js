@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
     boardRow.classList.add("row");
 
     const boardColumn = document.createElement("div");
-    boardColumn.classList.add("col-sm-6", 'offset-sm-3');
 
     const board = document.createElement('div');
     board.classList.add('board');
@@ -49,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const restartButton = document.createElement('button');
     restartButton.textContent = 'Restart Game';
-    restartButton.classList.add('btn', 'btn-info', 'mt-3');
+    restartButton.classList.add('btn', 'btn-secondary', 'mt-2');
     restartButton.addEventListener('click', restartGame);
 
     app.appendChild(createPlayerNames());
@@ -83,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const playerXInput = document.createElement('input');
     playerXInput.value = playerXName;
     playerXLabel.style.padding = "10px";
+    
     playerXInput.addEventListener('change', function () {
       playerXName = playerXInput.value || 'Player X';
     });
